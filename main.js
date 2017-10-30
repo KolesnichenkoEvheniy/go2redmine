@@ -7,7 +7,9 @@ let tray = undefined
 let window = undefined
 
 // Don't show the app in the doc
-app.dock.hide()
+if (process.platform === 'darwin') {
+  app.dock.hide();
+}
 
 app.on('ready', () => {
   createTray()
@@ -81,7 +83,7 @@ const toggleWindow = () => {
 
 const showWindow = () => {
   const position = getWindowPosition()
-  window.setPosition(position.x, position.y, false)
+  window.setPosition(position.x, position.y - 200, false)
   window.show()
   window.focus()
 }
